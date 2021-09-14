@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="stylesheet" href="home.css">
+ <link rel="stylesheet" href="/webcam/web_bas.html">
+ <script type="text/javascript">
+	function swap(a,i){
+		var s=document.getElementById("p1").src;
+		document.getElementById("p1").src=i;
+		document.getElementById(a).src=s;
+	}
+</script>
+</head>
+
+ <body>
+
+    <div class="container">
+        <div class="sidenav logo">
+            <img src="Logo.png">
+            <div class="line"></div>
+            <ul>
+                <li>
+                  <a href="homepage.html"> <i class="material-icons">dashboard  DASHBOARD</i>
+                  </a>     
+                  <br>
+                  <br>
+                </li>
+                <li>
+                  <a href="alertmsg.html"><i class="material-icons">camera ALERT MESSAGE</i>
+                  </a>  
+                  <br>
+                  <br>
+                </li> 
+                <li>
+                  <a href="logout.php"> <i class="material-icons">logout LOGOUT</i>
+                  </a>     
+                  <br>
+                  <br>
+                </li>  
+            </ul>
+            <!-- <form>
+              <input type = "text" id="id" placeholder="id"><br>
+          
+              <input type = "text" id="weapon_detection" placeholder="weapon detection"><br>
+              
+              <button id="submit"><br>
+              Submit
+              </button>
+            </form> -->
+        </div>
+        <div class="main-content">
+          <div style="padding-top: 8px; padding-left: 8px;">
+            <div class="camera">
+              <video id="video">Video stream not available.</video>
+          </div>
+          </div>
+
+          <div class="row1">
+              <div class="column1">
+                <img class="image" src="masks.png" >
+                <h2><?
+                  include ('includes/connection.php');
+                  echo $counter; 
+                  ?></h2>
+              </div>
+          
+              <div class="column1">
+                <img class="image" src="unmask.png" >
+                <h2>Unmask: 20</h2>
+              </div>
+              
+                  <div class="column1">
+                    <img class="image" src="ppl.png" >
+                    <h2>Total: 1040</h2>
+                  </div>
+          
+                  <div class="column1">
+                    <img class="image" src="gun.png" >
+                    <h2>Weapon: 0</h2>
+              </div>    
+        </div>
+
+        <div class="row2">
+          <div>
+            <video class="video2" src="video1.mp4.mp4" type="video/mp4" id="p2"  width="300" height="200" onclick="swap(this.id,this.src)" controls></video>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video2.mp4.mp4" type="video/mp4" id="p3"  width="300" height="200" onclick="swap(this.id,this.src)" controls>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video3.mp4.mp4" type="video/mp4" id="p4"  width="300" height="200" onclick="swap(this.id,this.src)" controls>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video4.mp4.mp4" type="video/mp4" id="p5" onclick="swap(this.id,this.src)"width="300" height="200" controls>
+            </video>
+          </div>
+        </div>
+        <br>
+        <div class="row2">
+          <div>
+            <video class="video2" src="video5.mp4.mp4" type="video/mp4" id="p6"  width="300" height="200" onclick="swap(this.id,this.src)" controls>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video6.mp4.mp4" type="video/mp4" id="p7"  width="300" height="200" onclick="swap(this.id,this.src)" controls>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video7.mp4.mp4" type="video/mp4" id="p8" width="300" height="200" onclick="swap(this.id,this.src)" controls>
+            </video>
+          </div>
+          <div>
+            <video class="video2" src="video5.mp4.mp4" type="video/mp4" id="p9" width="300" height="200" onclick="swap(this.id,this.src)"  controls>
+            </video>
+          </div>
+        </div>
+      </div>  
+      
+
+  <!-- The core Firebase JS SDK is always required and must be listed first 
+<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
+
+ TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries 
+<script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAE_8a-ZTA-7SPNc0_iL-2LUvs9n2nyAVc",
+    authDomain: "alertmsg-1f851.firebaseapp.com",
+    databaseURL: "https://alertmsg-1f851-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "alertmsg-1f851",
+    storageBucket: "alertmsg-1f851.appspot.com",
+    messagingSenderId: "107519261578",
+    appId: "1:107519261578:web:66768dde3554517e8d2673",
+    measurementId: "G-WTE1P82M0E"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+       
+<script src="connect.js"> --> 
+
+<script>
+    /* JS comes here */
+    (function() {
+
+        var width = 320; // We will scale the photo width to this
+        var height = 0; // This will be computed based on the input stream
+
+        var streaming = false;
+
+        var video = null;
+        var canvas = null;
+        var photo = null;
+        var startbutton = null;
+
+        function startup() {
+            video = document.getElementById('video');
+            canvas = document.getElementById('canvas');
+            photo = document.getElementById('photo');
+            startbutton = document.getElementById('startbutton');
+
+            navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: false
+                })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function(err) {
+                    console.log("An error occurred: " + err);
+                });
+
+            video.addEventListener('canplay', function(ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+
+                    if (isNaN(height)) {
+                        height = width / (4 / 3);
+                    }
+
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev) {
+                takepicture();
+                ev.preventDefault();
+            }, false);
+
+            clearphoto();
+        }
+
+
+        function clearphoto() {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#AAA";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+        }
+
+        function takepicture() {
+            var context = canvas.getContext('2d');
+            if (width && height) {
+                canvas.width = width;
+                canvas.height = height;
+                context.drawImage(video, 0, 0, width, height);
+
+                var data = canvas.toDataURL('image/png');
+                photo.setAttribute('src', data);
+            } else {
+                clearphoto();
+            }
+        }
+
+        window.addEventListener('load', startup, false);
+    })();
+    </script>
+
+</script>      
+    
+</body>
+</html> 
